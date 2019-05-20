@@ -1,6 +1,8 @@
-FROM google/cloud-sdk:alpine
+FROM google/cloud-sdk:slim
 
-RUN apk add -U --no-cache libtool openssl curl tar gzip bash ca-certificates git
+ENV LANG=C.UTF-8
+
+RUN apt-get update && apt-get install -y libtool openssl curl tar gzip bash ca-certificates git
 
 RUN curl -L -o /usr/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
 
